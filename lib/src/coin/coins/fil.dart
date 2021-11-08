@@ -11,6 +11,12 @@ import 'package:web3dart/crypto.dart';
 class FilWallet extends CoinWallet {
   FilWallet(String mnemonicWords, {String passphrase = ''}) : super(mnemonicWords, passphrase: passphrase);
 
+  @override
+  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: 461)).privateKey!;
+
+  @override
+  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
+
   //m/44'/461'/0'/0/0
   @override
   String generateAddress() {
@@ -45,8 +51,7 @@ class FilWallet extends CoinWallet {
   }
 
   @override
-  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: 461)).privateKey!;
-
-  @override
-  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
+  bool addressValid(String address) {
+    return validAddress(address);
+  }
 }

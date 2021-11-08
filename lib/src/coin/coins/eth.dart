@@ -9,6 +9,12 @@ import '../wallet.dart';
 class EthWallet extends CoinWallet {
   EthWallet(String mnemonicWords, {String passphrase = ''}) : super(mnemonicWords, passphrase: passphrase);
 
+  @override
+  Uint8List get privateKey => _getECKey().privateKey;
+
+  @override
+  BigInt get privateKeyInt => _getECKey().privateKeyInt;
+
   //0x640883c1b7a03b3484d9200b811a6f920e61cf78
   //m/44'/60'/0'/0/0
   @override
@@ -37,10 +43,10 @@ class EthWallet extends CoinWallet {
   }
 
   @override
-  Uint8List get privateKey => _getECKey().privateKey;
+  bool addressValid(String address) {
+    return validAddress(address);
+  }
 
-  @override
-  BigInt get privateKeyInt => _getECKey().privateKeyInt;
 /*@override
   FutureOr<String> signTransation(String inputTransaction, String toAddr) {
 

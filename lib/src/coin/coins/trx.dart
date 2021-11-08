@@ -15,6 +15,12 @@ class TrxWallet extends CoinWallet {
 
   TrxWallet(String mnemonicWords, {String passphrase = ''}) : super(mnemonicWords, passphrase: passphrase);
 
+  @override
+  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: 195)).privateKey!;
+
+  @override
+  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
+
   //m/44'/195'/0'/0/0
   //TSDmRJNfENV3dN4HnKaJ2zEpfXiQ38hsUe
   @override
@@ -62,8 +68,8 @@ class TrxWallet extends CoinWallet {
   }
 
   @override
-  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: 195)).privateKey!;
+  bool addressValid(String address) {
+    return validAddress(address);
+  }
 
-  @override
-  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
 }

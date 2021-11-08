@@ -26,6 +26,8 @@ abstract class CoinWallet {
 
   String getCoinPath({int purpose = 44, required int coinIndex, int account = 0, int change = 0, int addrIndex = 0}) =>
       "m/$purpose'/$coinIndex'/$account'/$change/$addrIndex";
+
+  bool addressValid(String address);
 }
 
 bip32.NetworkType netWorkType(bool mainNet) => mainNet ? _btcMainNet : _btcTestNet;

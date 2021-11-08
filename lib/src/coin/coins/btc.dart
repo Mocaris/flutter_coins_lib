@@ -8,7 +8,14 @@ import 'package:web3dart/crypto.dart';
 import '../wallet.dart';
 
 class BtcWallet extends CoinWallet {
-  BtcWallet(String mnemonicWords, {String passphrase = '', bool mainNet = true}) : super(mnemonicWords, passphrase: passphrase, mainNet: mainNet);
+  BtcWallet(String mnemonicWords, {String passphrase = '', bool mainNet = true})
+      : super(mnemonicWords, passphrase: passphrase, mainNet: mainNet);
+
+  @override
+  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: mainNet ? 0 : 1)).privateKey!;
+
+  @override
+  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
 
   //  m / purpose' / coin' / account' / change / address_index
   //1GE28szQ2PEgbZdQgGefdt5yQ3BsBmMpDr
@@ -38,10 +45,9 @@ class BtcWallet extends CoinWallet {
   }
 
   @override
-  Uint8List get privateKey => bip32Wallet.derivePath(getCoinPath(coinIndex: mainNet ? 0 : 1)).privateKey!;
-
-  @override
-  BigInt get privateKeyInt => bytesToUnsignedInt(privateKey);
+  bool addressValid(String address) {
+    return validAddress(address);
+  }
 
 /* @override
   FutureOr<String> signTransation(String inputTransaction, String toAddr) {
