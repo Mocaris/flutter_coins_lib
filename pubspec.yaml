@@ -1,0 +1,38 @@
+name: flutter_coins_lib
+description: coin lib
+version: 1.0.0
+# homepage: https://www.example.com
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+#  sdk: ">=2.7.0 <3.0.0"
+#  flutter: ">=1.17.0 <2.0.0"
+
+dependencies:
+  bip32: ^2.0.0
+  bip39: ^1.0.6
+  base58check: ^2.0.0
+  web3dart: ^2.3.2
+  bech32: ^0.2.1
+  #  pointycastle: ^3.1.2
+  crypton: ^2.0.3
+  sprintf: ^6.0.0
+  #  ckb_sdk_dart: ^0.31.0
+  #  wallet_hd: ^0.0.2
+  #  http: ^0.13.3
+  #  bitcoin_bip44: ^0.1.2
+  #  ethereum: ^5.0.0
+  #  bs58check: ^1.0.2
+#  convert: ^3.0.1
+#   path: ^1.8.0
+#  bitcoin_flutter: ^2.0.2
+
+dependency_overrides:
+  pointycastle: ^3.3.5
+#  web3dart: ^2.1.4
+#  bip32: ^2.0.0
+#  bs58check: ^1.0.2
+
+dev_dependencies:
+  pedantic: ^1.11.1
+  test: ^1.19.3
